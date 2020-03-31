@@ -1,7 +1,7 @@
 # Личный проект «Менеджер задач» [![Build status][travis-image]][travis-url]
 
-* Студент: [Ольга Коваль](https://up.htmlacademy.ru/ecmascript/11/user/114667).
-* Наставник: `Неизвестно`.
+* Студент: [Ольга Коваль](https://htmlacademy.ru/profile/zateya).
+* Наставник: [Анна Тюрина](https://htmlacademy.ru/profile/anntv).
 
 ---
 
