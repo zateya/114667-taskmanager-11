@@ -3,7 +3,7 @@ export const RenderPosition = {
   BEFOREEND: `beforeend`
 };
 
-export const render = (container, element, place) => {
+export const render = (container, element, place = RenderPosition.BEFOREEND) => {
   switch (place) {
     case RenderPosition.AFTERBEGIN:
       container.prepend(element);
@@ -46,10 +46,8 @@ export const castTimeFormat = (value) => {
 };
 
 export const formatTime = (date) => {
-  const hours24 = date.getHours();
-  const suffix = hours24 > 12 ? `p.m.` : `a.m.`;
-  const hours = castTimeFormat(hours24 % 12 || 12);
+  const hours = castTimeFormat(date.getHours() % 24);
   const minutes = castTimeFormat(date.getMinutes());
 
-  return `${hours}:${minutes} ${suffix}`;
+  return `${hours}:${minutes}`;
 };
