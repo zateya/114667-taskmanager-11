@@ -44,11 +44,11 @@ const renderTask = (taskListElement, task) => {
 };
 
 export default class BoardController {
-  constructor (container) {
+  constructor(container) {
     this._container = container;
 
     this._noTasksComponent = new NoTasksComponent();
-    this._sortComponent =  new SortComponent();
+    this._sortComponent = new SortComponent();
     this._tasksComponent = new TasksComponent();
     this._loadMoreButtonComponent = new LoadMoreButtonComponent();
   }
