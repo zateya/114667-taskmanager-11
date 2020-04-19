@@ -5,8 +5,7 @@ import BoardController from "./controllers/board.js";
 import {render} from "./utils/render.js";
 import {generateFilters} from "./mock/filter.js";
 import {generateTasks} from "./mock/task.js";
-
-const TASKS_COUNT = 24;
+import {TASKS_COUNT} from "./constant.js";
 
 const filters = generateFilters();
 const tasks = generateTasks(TASKS_COUNT);

@@ -5,9 +5,7 @@ import TaskComponent from "../components/task.js";
 import TaskEditComponent from "../components/task-edit.js";
 import LoadMoreButtonComponent from "../components/load-more-button.js";
 import {render, replace, remove} from "../utils/render.js";
-
-const SHOWING_TASKS_COUNT_ON_START = 8;
-const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
+import {SHOWING_TASKS_COUNT_ON_START, SHOWING_TASKS_COUNT_BY_BUTTON} from '../constant.js';
 
 const renderTask = (taskListElement, task) => {
   const replaceTaskToEdit = () => {
