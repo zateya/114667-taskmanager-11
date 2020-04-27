@@ -1,3 +1,5 @@
+import {MONTH_NAMES} from "../constant.js";
+
 export const getRandomIntegerNumber = (min, max) => {
   return min + Math.floor(Math.random() * (max - min));
 };
@@ -27,4 +29,8 @@ export const formatTime = (date) => {
   const minutes = castTimeFormat(date.getMinutes());
 
   return `${hours}:${minutes}`;
+};
+
+export const formatDate = (date) => {
+  return `${date.getDate()} ${MONTH_NAMES[date.getMonth()]}`;
 };
