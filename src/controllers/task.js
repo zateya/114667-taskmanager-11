@@ -1,12 +1,7 @@
 import TaskComponent from "../components/task.js";
 import TaskEditComponent from "../components/task-edit.js";
 import {render, replace} from "../utils/render.js";
-import {ESCAPE_KEY_CODE} from "../constant.js";
-
-const Mode = {
-  DEFAULT: `default`,
-  EDIT: `edit`,
-};
+import {ESCAPE_KEY_CODE, Mode} from "../constant.js";
 
 export default class TaskController {
   constructor(container, onDataChange, onViewChange) {
