@@ -1,10 +1,10 @@
-import SortComponent, {SortType} from "../components/sort.js";
+import SortComponent from "../components/sort.js";
 import TaskController from "./task.js";
 import TasksComponent from "../components/tasks.js";
 import NoTasksComponent from "../components/no-tasks.js";
 import LoadMoreButtonComponent from "../components/load-more-button.js";
 import {render, remove} from "../utils/render.js";
-import {SHOWING_TASKS_COUNT_ON_START, SHOWING_TASKS_COUNT_BY_BUTTON, TaskControllerMode, EmptyTask} from '../constant.js';
+import {SHOWING_TASKS_COUNT_ON_START, SHOWING_TASKS_COUNT_BY_BUTTON, SortType, TaskControllerMode, EmptyTask} from '../constant.js';
 
 const renderTasks = (taskListElement, tasks, onDataChange, onViewChange) => {
   return tasks.map((task) => {
@@ -57,6 +57,10 @@ export default class BoardController {
 
     this._sortComponent.setSortTypeChangeHandler(this._onSortTypeChange);
     this._tasksModel.setFilterChangeHandler(this._onFilterChange);
+  }
+
+  show() {
+
   }
 
   render() {
@@ -184,6 +188,7 @@ export default class BoardController {
   }
 
   _onFilterChange() {
+    this._sortComponent.setSortType(SortType.DEFAULT);
     this._updateTasks(SHOWING_TASKS_COUNT_ON_START);
   }
 }

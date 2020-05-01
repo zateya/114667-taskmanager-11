@@ -1,7 +1,7 @@
 import TaskComponent from "../components/task.js";
 import TaskEditComponent from "../components/task-edit.js";
 import {render, RenderPosition, replace, remove} from "../utils/render.js";
-import {ESCAPE_KEY_CODE, TaskControllerMode as Mode} from "../constant.js";
+import {ESCAPE_KEY_CODE, TaskControllerMode as Mode, EmptyTask} from "../constant.js";
 
 export default class TaskController {
   constructor(container, onDataChange, onViewChange) {
@@ -53,8 +53,9 @@ export default class TaskController {
         if (oldTaskEditComponent && oldTaskComponent) {
           replace(this._taskComponent, oldTaskComponent);
           replace(this._taskEditComponent, oldTaskEditComponent);
-          oldTaskComponent.removeElement();
-          oldTaskEditComponent.removeElement();
+
+          remove(oldTaskComponent);
+          remove(oldTaskEditComponent);
           this._replaceEditToTask();
         } else {
           render(this._container, this._taskComponent);

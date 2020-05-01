@@ -30,6 +30,7 @@ siteMenuComponent.setOnChange((menuItem) => {
   switch (menuItem) {
     case MenuItem.NEW_TASK:
       siteMenuComponent.setActiveItem(MenuItem.TASKS);
+      boardController.show();
       boardController.createTask();
       break;
   }

@@ -58,3 +58,9 @@ export const FilterType = {
   REPEATING: `repeating`,
   TODAY: `today`
 };
+
+export const SortType = {
+  DATE_DOWN: `date-down`,
+  DATE_UP: `date-up`,
+  DEFAULT: `default`
+};
