@@ -1,15 +1,21 @@
 import AbstractComponent from "./abstract-component.js";
 
-const createNoTasksTemplate = () => {
+const createNoTasksTemplate = (message) => {
   return (
     `<p class="board__no-tasks">
-      Click «ADD NEW TASK» in menu to create your first task
+      ${message}
     </p>`
   );
 };
 
 export default class NoTasks extends AbstractComponent {
+  constructor(message) {
+    super();
+
+    this._message = message;
+  }
+
   getTemplate() {
-    return createNoTasksTemplate();
+    return createNoTasksTemplate(this._message);
   }
 }
