@@ -8,6 +8,8 @@ const getFilterNameById = (id) => {
 const createFilterMarkup = (filter, isChecked) => {
   const {name, count} = filter;
 
+  const isDisabled = Boolean(!count);
+
   return (
     `<input
       type="radio"
@@ -15,6 +17,7 @@ const createFilterMarkup = (filter, isChecked) => {
       class="filter__input visually-hidden"
       name="filter"
       ${isChecked ? `checked` : ``}
+      ${isDisabled ? `disabled` : ``}
     />
     <label for="filter__${name}" class="filter__label">
       ${name} <span class="filter__${name}-count">${count}</span></label
@@ -37,6 +40,14 @@ export default class Filter extends AbstractComponent {
     super();
 
     this._filters = filters;
+  }
+
+  setActiveItem(filterType) {
+    const filterItem = this.getElement().querySelector(`#${FILTER_ID_PREFIX}${filterType}`);
+
+    if (filterItem) {
+      filterItem.checked = true;
+    }
   }
 
   getTemplate() {
