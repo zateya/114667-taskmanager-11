@@ -59,8 +59,12 @@ export default class BoardController {
     this._tasksModel.setFilterChangeHandler(this._onFilterChange);
   }
 
-  show() {
+  hide() {
+    this._container.hide();
+  }
 
+  show() {
+    this._container.show();
   }
 
   render() {
@@ -82,11 +86,17 @@ export default class BoardController {
   }
 
   createTask() {
+    this._showingTasksCount = SHOWING_TASKS_COUNT_ON_START - 1;
+    this._sortComponent.reset();
+    this._tasksModel.resetFilter();
+    this._updateTasks(this._showingTasksCount);
+
     if (this._creatingTask) {
       return;
     }
 
     const taskListElement = this._tasksComponent.getElement();
+
     this._creatingTask = new TaskController(taskListElement, this._onDataChange, this._onViewChange);
     this._creatingTask.render(EmptyTask, TaskControllerMode.ADDING);
   }
@@ -188,7 +198,8 @@ export default class BoardController {
   }
 
   _onFilterChange() {
-    this._sortComponent.setSortType(SortType.DEFAULT);
-    this._updateTasks(SHOWING_TASKS_COUNT_ON_START);
+    this._showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
+    this._sortComponent.reset();
+    this._updateTasks(this._showingTasksCount);
   }
 }

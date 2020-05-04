@@ -28,6 +28,10 @@ export default class Tasks {
     this._callHandlers(this._filterChangeHandlers);
   }
 
+  resetFilter() {
+    this._activeFilterType = FilterType.ALL;
+  }
+
   removeTask(id) {
     const index = this._tasks.findIndex((it) => it.id === id);
 

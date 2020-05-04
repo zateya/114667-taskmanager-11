@@ -26,7 +26,7 @@ const createColorsMarkup = (colors, currentColor) => {
           ${currentColor === color ? `checked` : ``}
         />
         <label
-          for="color-${color}--${index}"
+          for="color-${color}-${index}"
           class="card__color card__color--${color}"
           >${color}</label
         >`
@@ -295,5 +295,15 @@ export default class TaskEdit extends AbstractSmartComponent {
         this.rerender();
       });
     }
+
+    element.querySelector(`.card__colors-wrap`).addEventListener(`change`, (evt) => {
+      if (evt.target.tagName !== `INPUT`) {
+        return;
+      }
+
+      const color = evt.target.value;
+      this._task.color = color;
+      this.rerender();
+    });
   }
 }
