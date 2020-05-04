@@ -1,4 +1,4 @@
-import {MONTH_NAMES} from "../constant.js";
+import moment from "moment";
 
 export const getRandomIntegerNumber = (min, max) => {
   return min + Math.floor(Math.random() * (max - min));
@@ -20,17 +20,24 @@ export const getRandomDate = () => {
   return targetDate;
 };
 
-export const castTimeFormat = (value) => {
-  return value < 10 ? `0${value}` : String(value);
-};
-
 export const formatTime = (date) => {
-  const hours = castTimeFormat(date.getHours() % 24);
-  const minutes = castTimeFormat(date.getMinutes());
-
-  return `${hours}:${minutes}`;
+  return moment(date).format(`hh:mm`);
 };
 
 export const formatDate = (date) => {
-  return `${date.getDate()} ${MONTH_NAMES[date.getMonth()]}`;
+  return moment(date).format(`DD MMMM`);
+};
+
+export const isRepeating = (repeatingDays) => {
+  return Object.values(repeatingDays).some(Boolean);
+};
+
+export const isOverdueDate = (dueDate, date) => {
+  return dueDate < date && !isOneDay(date, dueDate);
+};
+
+export const isOneDay = (dateA, dateB) => {
+  const a = moment(dateA);
+  const b = moment(dateB);
+  return a.diff(b, `days`) === 0 && dateA.getDate() === dateB.getDate();
 };
