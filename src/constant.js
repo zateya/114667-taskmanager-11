@@ -1,6 +1,10 @@
 export const AUTHORIZATION = `Basic Sijf1de8ri39;lsd`;
 export const END_POINT = `https://11.ecmascript.pages.academy/task-manager`;
 
+const STORE_PREFIX = `taskmanager-localstorage`;
+const STORE_VER = `v1`;
+export const STORE_NAME = `${STORE_PREFIX}-${STORE_VER}`;
+
 export const Method = {
   GET: `GET`,
   POST: `POST`,

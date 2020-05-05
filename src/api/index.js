@@ -1,5 +1,5 @@
-import Task from "./models/task.js";
-import {Method} from "./constant.js";
+import Task from "../models/task.js";
+import {Method} from "../constant.js";
 
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
@@ -45,6 +45,16 @@ export default class API {
 
   deleteTask(id) {
     return this._load({url: `tasks/${id}`, method: Method.DELETE});
+  }
+
+  sync(data) {
+    return this._load({
+      url: `tasks/sync`,
+      method: Method.POST,
+      body: JSON.stringify(data),
+      headers: new Headers({"Content-Type": `application/json`})
+    })
+      .then((response) => response.json());
   }
 
   _load({url, method = Method.GET, body = null, headers = new Headers()}) {
