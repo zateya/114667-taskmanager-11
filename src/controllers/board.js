@@ -44,8 +44,7 @@ export default class BoardController {
     this._tasks = [];
     this._showedTaskControllers = [];
     this._showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
-    this._preloadComponent = null;
-    this._noTasksComponent = new NoTasksComponent(NoTasksMessage.ADD);
+    this._noTasksComponent = null;
     this._sortComponent = new SortComponent();
     this._tasksComponent = new TasksComponent();
     this._loadMoreButtonComponent = new LoadMoreButtonComponent();
@@ -71,18 +70,20 @@ export default class BoardController {
   }
 
   preload() {
-    this._preloadComponent = new NoTasksComponent(NoTasksMessage.LOADING);
-    render(this._container.getElement(), this._preloadComponent);
+    this._noTasksComponent = new NoTasksComponent(NoTasksMessage.LOADING);
+    render(this._container.getElement(), this._noTasksComponent);
   }
 
   render() {
     const container = this._container.getElement();
     const tasks = this._tasksModel.getTasks();
-    const isAllTasksArchived = tasks.every((task) => task.isArchive);
 
-    remove(this._preloadComponent);
+    remove(this._noTasksComponent);
 
-    if (isAllTasksArchived || tasks.length === 0) {
+    this._noTasksComponent = new NoTasksComponent(NoTasksMessage.ADD);
+    const isNoTasks = tasks.every((task) => task.isArchive) || tasks.length === 0;
+
+    if (isNoTasks) {
       render(container, this._noTasksComponent);
       this._isNoTasksShown = true;
       return;
@@ -112,13 +113,6 @@ export default class BoardController {
     this._isNoTasksShown = false;
   }
 
-  _resetFilters() {
-    this._showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
-    this._sortComponent.setSortType(SortType.DEFAULT);
-    this._tasksModel.resetFilter();
-    this._updateTasks(this._showingTasksCount);
-  }
-
   createTask() {
     if (this._showedTaskControllers.length === 0) {
       this._renderBoard();
@@ -133,7 +127,10 @@ export default class BoardController {
     this._creatingTask = new TaskController(taskListElement, this._onDataChange, this._onViewChange);
     this._creatingTask.render(EmptyTask, TaskControllerMode.ADDING);
 
-    this._resetFilters();
+    this._showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
+    this._sortComponent.setSortType(SortType.DEFAULT);
+    this._tasksModel.resetFilter();
+    this._updateTasks(this._showingTasksCount);
   }
 
   _removeTasks() {
@@ -233,6 +230,10 @@ export default class BoardController {
           if (isSuccess) {
             taskController.render(taskModel, TaskControllerMode.DEFAULT);
             this._updateTasks(this._showingTasksCount);
+          }
+
+          if (this._showingTasksCount === 0) {
+            this._renderNoTasks();
           }
         })
         .catch(() => {
