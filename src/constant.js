@@ -1,6 +1,13 @@
 export const AUTHORIZATION = `Basic Sijf1de8ri39;lsd`;
 export const END_POINT = `https://11.ecmascript.pages.academy/task-manager`;
 
+export const Method = {
+  GET: `GET`,
+  POST: `POST`,
+  PUT: `PUT`,
+  DELETE: `DELETE`
+};
+
 export const SHAKE_ANIMATION_TIMEOUT = 600;
 
 export const ESCAPE_KEY_CODE = 27;
@@ -15,9 +22,14 @@ export const MAX_DESCRIPTION_LENGTH = 140;
 
 export const FILTER_ID_PREFIX = `filter__`;
 
+export const DefaultData = {
+  deleteButtonText: `Delete`,
+  saveButtonText: `Save`,
+};
+
 export const NoTasksMessage = {
   LOADING: `Loading...`,
-  ADD: ` Click «ADD NEW TASK» in menu to create your first task`
+  ADD: ` Click «ADD NEW TASK» in menu to create your first task`,
 };
 
 export const COLOR = {
@@ -25,7 +37,7 @@ export const COLOR = {
   YELLOW: `yellow`,
   BLUE: `blue`,
   GREEN: `green`,
-  PINK: `pink`
+  PINK: `pink`,
 };
 
 export const COLORS = Object.values(COLOR);
@@ -33,7 +45,7 @@ export const COLORS = Object.values(COLOR);
 export const TaskControllerMode = {
   DEFAULT: `default`,
   ADDING: `adding`,
-  EDIT: `edit`
+  EDIT: `edit`,
 };
 
 export const EmptyTask = {
@@ -56,7 +68,7 @@ export const EmptyTask = {
 export const MenuItem = {
   NEW_TASK: `control__new-task`,
   STATISTICS: `control__statistic`,
-  TASKS: `control__task`
+  TASKS: `control__task`,
 };
 
 export const FilterType = {
@@ -65,18 +77,11 @@ export const FilterType = {
   TODAY: `today`,
   FAVORITES: `favorites`,
   REPEATING: `repeating`,
-  ARCHIVE: `archive`
+  ARCHIVE: `archive`,
 };
 
 export const SortType = {
   DATE_DOWN: `date-down`,
   DATE_UP: `date-up`,
-  DEFAULT: `default`
-};
-
-export const Method = {
-  GET: `GET`,
-  POST: `POST`,
-  PUT: `PUT`,
-  DELETE: `DELETE`
+  DEFAULT: `default`,
 };
